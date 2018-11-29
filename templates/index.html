@@ -22,7 +22,7 @@
 {% elif tag %}
 <h3>Tag: {{tag}}</h3>
 {% endif %}
-{% from 'partial/macros.html' import list_articles %}
+{% from 'partial/macros.html' import list_articles with context %}
 {{ list_articles(articles_page.object_list)  }}
 
 {% include "partial/pagination.html" %}

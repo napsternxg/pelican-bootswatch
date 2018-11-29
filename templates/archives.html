@@ -7,7 +7,7 @@
         <h1>{{ _('Archives') }}</h1>
     </header>
     <div>
-        {% from 'partial/macros.html' import list_articles %}
+        {% from 'partial/macros.html' import list_articles with context %}
         {% for year, article_list in dates|groupby('date.year')|sort(reverse=True) %}
         <h3>{{ year }}</h3>
         {{ list_articles(article_list|sort(reverse=True, attribute='date')) }}
