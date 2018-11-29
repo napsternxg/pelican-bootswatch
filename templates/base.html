@@ -80,7 +80,7 @@
   {% endif %}
   <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ SITEURL }}">{{ SITETITLE }}</a>
+          <a class="navbar-brand" href="{{ SITEURL }}">{{ SITETITLE }}</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
@@ -91,20 +91,21 @@
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="true">Notes</a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           {% if not PAGES_SORT_ATTRIBUTE -%}
-                            {% set PAGES_SORT_ATTRIBUTE = 'title' %}
+                          {% set PAGES_SORT_ATTRIBUTE = 'title' %}
                           {%- endif %}
                           {% for page in pages|sort(attribute=PAGES_SORT_ATTRIBUTE) %}
-                            <a class="dropdown-item" href="{{ SITEURL }}/{{ page.url }}{% if not DISABLE_URL_HASH %}#{{ page.slug }}{% endif %}">{{ page.title }}</a>
+                          <a class="dropdown-item" href="{{ SITEURL }}/{{ page.url }}{% if not DISABLE_URL_HASH %}#{{ page.slug }}{% endif %}">{{ page.title }}</a>
                           {% endfor %}
                       </div>
                   </li>
-                  {% for name, link in LINKS %}
-                  <li class="nav-item"><a class="nav-link" href="{{ link }}" target="_blank">{{ name }}</a></li>
-                  {% endfor %}
                   {% for title, link in MENUITEMS %}
                   <li class="nav-item"><a class="nav-link" href="{{ link }}">{{ title }}</a></li>
                   {% endfor %}
-
+              </ul>
+              <ul class="navbar-nav">
+                  {% for name, link in LINKS %}
+                  <li class="nav-item"><a class="nav-link" href="{{ link }}" target="_blank">{{ name }}</a></li>
+                  {% endfor %}
                   {% if FEED_ALL_ATOM %}
                   <li class="nav-item"><a class="nav-link" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">{{ _('Atom') }}</a></li>
                   {% endif %}
@@ -119,19 +120,20 @@
   <div class="container">
       <div class="row">
           <div class="col-lg-12" style="text-align: justify;">
-            {% block content %}
-            {% endblock %}
+              {% block content %}
+              {% endblock %}
           </div>
       </div>
   </div>
   <div class="container">
-      <div class="footer">
+      <hr/>
+      <footer class="footer text-center text-muted">
           {% if CC_LICENSE %}
-            {% include "partial/cc_license.html" %}
+          {% include "partial/cc_license.html" %}
           {% else %}
-            {% include "partial/copyright.html" %}
+          {% include "partial/copyright.html" %}
           {% endif %}
-      </div>
+      </footer>
   </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

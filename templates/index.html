@@ -1,28 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="jumbotron">
-    <h1 class="display-3">{{ SITETITLE }}</h1>
-    <p class="lead">{{ SITESUBTITLE }}</p>
-    <hr class="my-4">
-    <p>{{ SITEDESCRIPTION }}</p>
-    <p class="lead">
-    {% if FEED_ALL_ATOM %}
-    <a class="btn btn-primary btn-lg" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" role="button">Subscribe</a>
-    {% elif FEED_ALL_RSS %}
-    <a class="btn btn-primary btn-lg" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" role="button">Subscribe</a>
-    {% endif %}
-    </p>
+{% if output_file == 'index.html' %}
+<div class="card border-light">
+    <div class="card-body">
+        <h3 class="card-title">
+            {{ SITETITLE }}
+            <small class="text-muted">{{ SITESUBTITLE }}</small>
+        </h3>
+        <p class="card-text">{{ SITEDESCRIPTION }}</p>
+        {% if FEED_ALL_ATOM %}
+        <a class="btn btn-primary btn-lg" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" role="button">Subscribe</a>
+        {% elif FEED_ALL_RSS %}
+        <a class="btn btn-primary btn-lg" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" role="button">Subscribe</a>
+        {% endif %}
+    </div>
 </div>
-
-<ul>
-{% for article in articles_page.object_list %}
-    <li>
-        <a href="{{ SITEURL  }}/{{ article.url  }}{% if not DISABLE_URL_HASH %}#{{ article.slug  }}{% endif %}">{{ article.title }}</a>-<small class="text-muted"> {{article.locale_date}} </small>
-    </li>
-{% endfor %}
-</ul>
+{% endif %}
+{% if category %}
+<h3>Category: {{category}}</h3>
+{% elif tag %}
+<h3>Tag: {{tag}}</h3>
+{% endif %}
+{% from 'partial/macros.html' import list_articles %}
+{{ list_articles(articles_page.object_list)  }}
 
 {% include "partial/pagination.html" %}
 
