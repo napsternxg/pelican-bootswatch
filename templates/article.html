@@ -21,11 +21,11 @@
     <p>
       {{ _('Posted on %(when)s in %(category)s',
            when=article.locale_date,
-           category='<a href="%s/%s" class="badge badge-primary">%s</a>'|format(SITEURL, article.category.url, article.category)|safe) }}
+           category='<a href="%s/%s" class="badge bg-primary">%s</a>'|format(SITEURL, article.category.url, article.category)|safe) }}
 
       {% if article.tags %}
       {% for tag in article.tags %}
-      <a href="{{ SITEURL }}/{{ tag.url }}" class="badge badge-info">{{ tag }}</a>
+      <a href="{{ SITEURL }}/{{ tag.url }}" class="badge bg-info">{{ tag }}</a>
       {% endfor %}
       {% endif %}
       {% if 'post_stats' in PLUGINS %}
