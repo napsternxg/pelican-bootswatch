@@ -45,10 +45,9 @@
     </script>
   {% endif %}
 
-  <div>
-    {{ article.content }}
-  </div>
-
+  <!--START: Article content-->
+  {{ article.content }}  
+  <!--END: Article content-->
   {% if ADD_THIS_ID %}
   <div class="center social-share">
     <p>{{ _('Like this article? Share it with your friends!') }}</p>

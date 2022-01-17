@@ -10,9 +10,9 @@
         </h3>
         <p class="card-text">{{ SITEDESCRIPTION }}</p>
         {% if FEED_ALL_ATOM %}
-        <a class="btn btn-primary btn-lg" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" role="button">Subscribe</a>
+        <a class="btn btn-primary" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" role="button">Subscribe</a>
         {% elif FEED_ALL_RSS %}
-        <a class="btn btn-primary btn-lg" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" role="button">Subscribe</a>
+        <a class="btn btn-primary" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" role="button">Subscribe</a>
         {% endif %}
     </div>
 </div>
